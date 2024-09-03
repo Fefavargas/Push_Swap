@@ -6,71 +6,13 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 22:45:57 by fvargas           #+#    #+#             */
-/*   Updated: 2024/08/30 21:16:23 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/03 22:00:08 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 #include <stdio.h> //deletar
-
-// char	*argv_to_string(int argc, char **argv)
-// {
-// 	char	*str;
-// 	char	*argv_space;
-// 	size_t	i;
-
-// 	i = 1;
-// 	str = "";
-// 	while (i != argc)
-// 	{
-// 		argv_space = ft_strjoin(argv[i], " ");
-// 		if (!argv_space)
-// 		{
-// 			free(str);
-// 			return (0);
-// 		}
-// 		str = ft_strjoin(str, argv_space);
-// 		free(argv_space);
-// 		if (!str)
-// 			return (0);
-// 		i++;
-// 	}
-// 	return (str);
-// }
-
-// int	count_nbr(char *str)
-// {
-// 	int	i;
-// 	int	count;
-
-// 	i = 0;
-// 	count = 0;
-// 	while (str[i])
-// 	{
-// 		while (str[i] != ' ')
-// 			i++;
-// 		if (str[i] == '+' || str[i] == '-')
-// 			i++;
-// 		while ((str[i] >= '0' && str[i] <= '9'))
-// 			i++;
-// 		count += 1;
-// 		if (str[i] != ' ' && str[i] != '\0')
-// 			return (-1);
-// 	}
-// 	return (count);
-// }
-
-// int	array_int(char *str)
-// {
-// 	int	size;
-// 	int	i;
-
-// 	i = 0;
-// 	size = count_nbr(str);
-// 	printf("%d", size);
-// 	return (size);
-// }
 
 char	*extract_line(char *stash)
 {
@@ -105,7 +47,7 @@ t_stack_node	*create_node(t_stack_node *prev, int number, size_t index)
 	return (node);
 }
 
-int	create_stack(t_stack_node	*stack, t_stack_node *prev, char *str)
+int	create_stack(t_stack_node *stack, t_stack_node *prev, char *str)
 {
 	t_stack_node	*node;
 	size_t			i;
@@ -115,16 +57,28 @@ int	create_stack(t_stack_node	*stack, t_stack_node *prev, char *str)
 
 	i = 0;
 	count = 0;
+	//printf("create_stack --%s\n", str);
 	while (str[i])
 	{
+		//printf("str --%s\n", str);
 		line = extract_line(str);
+		//printf("line: %s \n", line);
 		nbr = ft_atoi(line);
+		//printf("atoi: %d \n", nbr);
 		node = create_node(prev, nbr, count);
-			if (stack == 0)
-				stack = node;
-		prev = node;
-		count ++;
 		i += ft_strlen(line);
+		if (line)
+			free(line);
+		if (stack == 0)
+		{
+			stack = node;
+			prev = node;
+		}
+		else
+			prev->next = node;
+		//printf("node: %d \n", node->nbr);
+		count++;
+		str = &str[i];
 	}
 	return (count);
 }
@@ -140,9 +94,10 @@ t_stack_node	*get_stack(int argc, char **argv)
 	i = 1;
 	prev = 0;
 	stack = 0;
+	printf("qtd argc = %d \n", argc);
 	while (i < argc)
 	{
-		printf("aqui\n");
+		printf("get_stack -- i= %d  argv[i] = %s\n", i, argv[i]);
 		create_stack(stack, prev, argv[i]);
 		i++;
 		//printf("index:%d  numbero:%i\n", prev->nbr, (int)prev->index);
@@ -151,11 +106,66 @@ t_stack_node	*get_stack(int argc, char **argv)
 	return (stack);
 }
 
+int	is_sorted(t_stack_node *stack)
+{
+	int	min;
+	t_stack_node *tmp;
+
+	min = stack->nbr;
+	tmp = stack;
+	while (stack->next != NULL)
+	{
+		tmp = stack->next;
+		if (min > tmp->nbr)
+			return (0);
+	}
+	return (1);
+}
+
+int	find_max(t_stack_node *stack)
+{
+	int	max;
+	t_stack_node *tmp;
+
+	tmp = stack;
+	max = stack->next;
+	while (stack->next != NULL)
+	{
+		tmp = stack->next;
+		if (max < tmp->nbr)
+			max = tmp->nbr;
+	}
+	return (max);
+}
+
+void	solution_three(t_stack_node *stack_a)
+{
+	int	max;
+
+	max = find_max(stack_a);
+	if (max == stack_a->nbr)
+		ft_ra(stack_a);
+	if (max == stack_a->prev->nbr)
+		ft_rra(stack_a);
+	if (!is_sorted(stack_a))
+		ft_sa(stack_a);
+	return ;
+}
+
+
+
+void	find_solution(int argc, char **argv)
+{
+	t_stack_node	*stack;
+
+	stack = get_stack(argc, argv);
+}
+
 int	main(int argc, char **argv)
 {
 	if (argc < 2)
 		return (0);
-	get_stack(argc, argv);
+	find_solution(argc, argv);
 	printf("Fernanda: %s", argv[0]);
 	return (0);
 }
