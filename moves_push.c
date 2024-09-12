@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves_ab.c                                         :+:      :+:    :+:   */
+/*   moves_push.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/30 22:00:29 by fvargas           #+#    #+#             */
-/*   Updated: 2024/08/30 22:10:57 by fvargas          ###   ########.fr       */
+/*   Created: 2024/09/12 11:29:48 by fvargas           #+#    #+#             */
+/*   Updated: 2024/09/12 11:39:36 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 
-void    ft_ss(t_stack_node  *stack_a, t_stack_node  *stack_b)
+void    push(t_stack_node *from, t_stack_node *to)
 {
-    ft_putstr_fd("ss",1);
-    swap(stack_a);
-     swap(stack_b);
+    to->prev = from;
+    from->next = to;
+    from = from->next;
+    from->prev = NULL;
 }
 
-void    ft_rr(t_stack_node  *stack_a, t_stack_node  *stack_b)
+void    ft_pa(t_stack_node  *stack_a, t_stack_node  *stack_b)
 {
-    ft_putstr_fd("rr",1);
-    rotate(stack_a);
-    rotate(stack_b);
+    ft_putstr_fd("pa\n",1);
+    push(stack_b, stack_a);
 }
 
-void    ft_rrr(t_stack_node  *stack_a, t_stack_node  *stack_b)
+void    ft_pb(t_stack_node  *stack_a, t_stack_node  *stack_b)
 {
-    ft_putstr_fd("rrr",1);
-    rrotate(stack_a);
-    rrotate(stack_b);
+    ft_putstr_fd("pb\n",1);
+    push(stack_a, stack_b);
 }

@@ -6,7 +6,7 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 22:45:57 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/03 22:00:08 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/12 18:56:46 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ char	*extract_line(char *stash)
 	i = 0;
 	if (!stash[i])
 		return (0);
-	while (stash[i] && stash[i] != '\n')
+	while (stash[i] && stash[i] != ' ')
 		i++;
 	line = (char *)ft_calloc(i + 1, sizeof(char));
 	if (!line)
 		return (0);
 	i = 0;
-	while (stash[i] && stash[i] != '\n')
+	while (stash[i] && stash[i] != ' ')
 	{
 		line[i] = stash[i];
 		i++;
@@ -37,73 +37,100 @@ char	*extract_line(char *stash)
 	return (line);
 }
 
-t_stack_node	*create_node(t_stack_node *prev, int number, size_t index)
+t_stack_node	*create_node(int number, size_t index)
 {
 	t_stack_node	*node;
 
+	node = ft_calloc(1,sizeof(t_stack_node));
+	if (!node)
+		return (0);
 	node->nbr = number;
 	node->index = index;
-	node->prev = prev;
 	return (node);
 }
 
-int	create_stack(t_stack_node *stack, t_stack_node *prev, char *str)
+t_stack_node	*create_stack(t_stack_node *stack, char *str)
 {
 	t_stack_node	*node;
 	size_t			i;
 	int				nbr;
-	int				count;
+	static int		count = 0;
 	char			*line;
 
 	i = 0;
-	count = 0;
-	//printf("create_stack --%s\n", str);
 	while (str[i])
 	{
-		//printf("str --%s\n", str);
 		line = extract_line(str);
-		//printf("line: %s \n", line);
 		nbr = ft_atoi(line);
-		//printf("atoi: %d \n", nbr);
-		node = create_node(prev, nbr, count);
-		i += ft_strlen(line);
+		node = create_node(nbr, count);
+				if (!node)
+			return (0);
+		i = ft_strlen(line) + 1;
 		if (line)
 			free(line);
-		if (stack == 0)
+		if (stack != 0)
 		{
-			stack = node;
-			prev = node;
+			node->prev = stack;
+			stack->next = node;
 		}
-		else
-			prev->next = node;
-		//printf("node: %d \n", node->nbr);
+		stack = node;
 		count++;
 		str = &str[i];
+		i = 0;
 	}
-	return (count);
+	while(stack->prev)
+			stack = stack->prev;
+	return (stack);
 }
 
 t_stack_node	*get_stack(int argc, char **argv)
 {
-	char			*str;
 	t_stack_node	*stack;
-	t_stack_node	*prev;
+	t_stack_node	*tmp;
 	int				i;
-	char	*line;
+	int				count;
 
-	i = 1;
-	prev = 0;
-	stack = 0;
-	printf("qtd argc = %d \n", argc);
-	while (i < argc)
+	argc = 3; //deletar
+	argv = ft_calloc(argc, sizeof(char*)); //deletar
+	argv[0] = ft_calloc(10, sizeof(char)); //deletar
+	ft_strlcpy(argv[0], "1 2 3 4", 8); //deletar
+	argv[1] = ft_calloc(10, sizeof(char)); //deletar
+	ft_strlcpy(argv[1], "5 6 7 8 1", 10); //deletar
+	printf("qtd argc = %d \n", argc); //deletar
+	//i = 1; //voltar
+	i = 0; //deletar
+	if (i < argc)
+		stack = create_stack(0, argv[i]);
+	tmp = stack;
+	//while (i < argc - 1) // voltar
+	while (i < argc - 2)
 	{
-		printf("get_stack -- i= %d  argv[i] = %s\n", i, argv[i]);
-		create_stack(stack, prev, argv[i]);
 		i++;
-		//printf("index:%d  numbero:%i\n", prev->nbr, (int)prev->index);
-		printf("index:%i ", prev->nbr);
+		while(tmp->next)
+			tmp = tmp->next;
+		create_stack(tmp, argv[i]);
 	}
 	return (stack);
+}
+
+int is_repeated(t_stack_node *stack)
+{
+	t_stack_node	*tmp;
+	int				nbr;
+
+	nbr = stack->nbr;
+	tmp = stack;
+	while(tmp->next)
+	{
+		while(stack->next)
+		{
+			if(nbr == stack->next->nbr)
+				return (1);
+			stack = stack->next;
+		}
+		tmp = tmp->next;
+	}
+	return (0);
 }
 
 int	is_sorted(t_stack_node *stack)
@@ -128,7 +155,7 @@ int	find_max(t_stack_node *stack)
 	t_stack_node *tmp;
 
 	tmp = stack;
-	max = stack->next;
+	max = stack->nbr;
 	while (stack->next != NULL)
 	{
 		tmp = stack->next;
@@ -157,14 +184,16 @@ void	solution_three(t_stack_node *stack_a)
 void	find_solution(int argc, char **argv)
 {
 	t_stack_node	*stack;
+	int				i;
 
 	stack = get_stack(argc, argv);
+	i = is_repeated(stack);
 }
 
 int	main(int argc, char **argv)
 {
-	if (argc < 2)
-		return (0);
+	// if (argc < 2)
+	//  	return (0);
 	find_solution(argc, argv);
 	printf("Fernanda: %s", argv[0]);
 	return (0);
