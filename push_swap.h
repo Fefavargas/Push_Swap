@@ -19,7 +19,8 @@ typedef struct s_stacks_node
 {
     int	nbr;
     size_t  index;
-    size_t  cost;
+    size_t  cost_a;
+    size_t  cost_b;
     struct  s_stacks_node   *target;
     struct  s_stacks_node   *next;
     struct  s_stacks_node   *prev;
@@ -37,4 +38,15 @@ void    ft_rra(t_stack_node  *stack);
 void    ft_rrb(t_stack_node  *stack);
 void    ft_rrr(t_stack_node  *stack_a, t_stack_node  *stack_b);
 
+t_stack_node	*get_stack(int argc, char **argv, int *count);
+int is_repeated(t_stack_node *stack);
+int find_max(t_stack_node *stack);
+int	is_sorted(t_stack_node *stack);
+void    indexation(t_stack_node *stack, int count);
+int find_nbr_index(t_stack_node *stack, int index);
+
+void    solution_three(t_stack_node *stack_a);
+void	find_solution(int argc, char **argv);
+
+void free_array(t_stack_node *stack, char *msg);
 #endif

@@ -15,20 +15,22 @@
 
 void    push(t_stack_node *from, t_stack_node *to)
 {
+    t_stack_node    *tmp;
+
+    tmp = from->next;
     to->prev = from;
     from->next = to;
-    from = from->next;
-    from->prev = NULL;
+    from = tmp;
 }
 
 void    ft_pa(t_stack_node  *stack_a, t_stack_node  *stack_b)
 {
-    ft_putstr_fd("pa\n",1);
+    ft_putstr_fd("pa\n", 1);
     push(stack_b, stack_a);
 }
 
 void    ft_pb(t_stack_node  *stack_a, t_stack_node  *stack_b)
 {
-    ft_putstr_fd("pb\n",1);
+    ft_putstr_fd("pb\n", 1);
     push(stack_a, stack_b);
 }
