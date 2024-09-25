@@ -3,150 +3,107 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/16 09:16:57 by marvin            #+#    #+#             */
-/*   Updated: 2024/09/16 09:16:57 by marvin           ###   ########.fr       */
+/*   Created: 2024/09/20 19:06:56 by fvargas           #+#    #+#             */
+/*   Updated: 2024/09/25 18:24:57 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft/libft.h"
 
-int is_repeated(t_stack_node *stack)
+size_t	find_min_index(t_node *stack)
 {
-	t_stack_node	*tmp;
-	int				nbr;
+	size_t	min;
 
-	nbr = stack->nbr;
-	tmp = stack;
-	while(tmp->next)
-	{
-		while(stack->next)
-		{
-			if(nbr == stack->next->nbr)
-				return (1);
-			stack = stack->next;
-		}
-		tmp = tmp->next;
-	}
-	return (0);
-}
-
-int	is_sorted(t_stack_node *stack)
-{
-	int	min;
-	t_stack_node *tmp;
-
-	min = stack->nbr;
-	tmp = stack;
-	while (stack->next != NULL)
-	{
-		tmp = stack->next;
-		if (min > tmp->nbr)
-			return (0);
-	}
-	return (1);
-}
-
-int	find_max(t_stack_node *stack)
-{
-	int	max;
-
-	max = stack->nbr;
+	min = stack->index;
 	while (stack)
 	{
-		if (max < stack->nbr)
-			max = stack->nbr;
-        stack = stack->next;
+		if (min > stack->index)
+			min = stack->index;
+		stack = stack->next;
 	}
-	return (max);
+	return (min);
 }
 
-int	find_max_cmp(t_stack_node *stack, int max)
+t_node	find_max(t_node *stack)
 {
-    int prev_max;
+	t_node	node;
 
-    prev_max = max;
+	node = *stack;
+	while (stack)
+	{
+		if (node.nbr < stack->nbr)
+			node = *stack;
+		stack = stack->next;
+	}
+	return (node);
+}
+
+t_node	find_last(t_node *stack)
+{
+	t_node	node;
+
+	node = *stack;
+	while (stack)
+	{
+		node = *stack;
+		stack = stack->next;
+	}
+	return (node);
+}
+
+int	find_max_cmp(t_node *stack, int max)
+{
+	int		prev_max;
+	t_node	*tmp;
+
+	tmp = stack;
+	while (tmp)
+	{
+		if (tmp->index == -1)
+			prev_max = tmp->nbr;
+		tmp = tmp->next;
+	}
 	while (stack)
 	{
 		if (prev_max < stack->nbr && stack->nbr < max)
 			prev_max = stack->nbr;
-        stack = stack->next;
+		stack = stack->next;
 	}
 	return (prev_max);
 }
 
-void    indexation(t_stack_node *stack, int count)
+t_node	find_min_max_index(t_node *stack_a, int index)
 {
-    t_stack_node    *tmp;
-    int max;
+	t_node	*tmp;
+	t_node	node;
 
-    tmp = stack;
-    max = find_max(stack);
-    while (count != 0)
-    {
-        if (tmp->nbr == max)
-        {
-            tmp->index = count - 1;
-            max = find_max_cmp(stack, max);
-            tmp = stack;
-        }
-        count--;
-        tmp = tmp->next;
-    }
+	tmp = stack_a;
+	while (tmp)
+	{
+		if (tmp->index > index)
+			node = *tmp;
+		tmp = tmp->next;
+	}
+	while (stack_a)
+	{
+		if (node.index > stack_a->index && stack_a->index > index)
+			node = *stack_a;
+		stack_a = stack_a->next;
+	}
+	return (node);
 }
 
-int	find_nbr_index(t_stack_node *stack, int index)
+size_t	ft_count(t_node *stack)
 {
+	size_t	count;
+
+	count = 0;
 	while (stack)
 	{
-		if (stack->index == index)
-			return stack->nbr;
+		count++;
 		stack = stack->next;
 	}
-	return (-1);
-}
-
-int	abs(int i)
-{
-	if (i < 0 && i != -2147483648)
-		return (-i);
-	return (i);
-}
-
-int bigger(int i, int j)
-{
-	if (i > j)
-		return (i);
-	return (j);
-}
-
-int	find_cost(t_stack_node stack_b)
-{
-	if (stack_b.cost_a < 0 && stack_b.cost_b < 0)
-			return bigger(abs(stack_b.cost_a ),abs(stack_b.cost_b));
-	else if (stack_b.cost_a > 0 && stack_b.cost_b > 0)
-			return bigger(abs(stack_b.cost_a ),abs(stack_b.cost_b));
-	return abs(stack_b.cost_a ) + abs(stack_b.cost_b);
-}
-
-int	find_min_cost_index(t_stack_node *stack_b)
-{
-	int	min_cost;
-	int	index;
-
-	index = 0;
-	min_cost = fin_cost(*stack_b);
-	while (stack_b)
-	{
-
-		if (min_cost > find_cost(*stack_b))
-		{
-			index = stack_b->index;
-			min_cost = fin_cost(*stack_b);
-		}
-		stack_b = stack_b->next;
-	}
-	return (index);
+	return (count);
 }

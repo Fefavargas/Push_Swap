@@ -5,21 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/23 22:45:57 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/12 18:56:46 by fvargas          ###   ########.fr       */
+/*   Created: 2024/09/20 12:01:21 by fvargas           #+#    #+#             */
+/*   Updated: 2024/09/25 18:24:57 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft/libft.h"
-#include <stdio.h> //deletar
-
-/*void	find_solution(int argc, char **argv);*/
 
 int	main(int argc, char **argv)
 {
-	 if (argc < 2)
-	 	return (0);
-	find_solution(argc, argv);
+	t_node	*stack_a;
+	t_node	*stack_b;
+	size_t	count;
+
+	stack_b = NULL;
+	stack_a = NULL;
+	if (argc <= 1)
+		return (0);
+	stack_a = create_stack_a(argc, argv);
+	if (!stack_a)
+		return (0);
+	if (is_sorted(stack_a))
+		return (0);
+	create_stack_b(&stack_a, &stack_b);
+	while (stack_b)
+	{
+		calculate_cost_b(stack_a, &stack_b);
+		move_stack_b(&stack_a, &stack_b);
+	}
+	rotate_stack_a(&stack_a);
+	if (is_sorted(stack_a))
+		free_stack(&stack_a, "Error\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 23:39:21 by fvargas           #+#    #+#             */
-/*   Updated: 2024/07/18 12:54:39 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/24 13:30:11 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strnstr(const char *haystack, const char *neddle, size_t len);
-int		ft_atoi(const char *nptr);
+long	ft_atoi(const char *nptr);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strdup(const char *s);
 

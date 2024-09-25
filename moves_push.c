@@ -6,31 +6,37 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:29:48 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/12 11:39:36 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/24 20:51:57 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 
-void    push(t_stack_node *from, t_stack_node *to)
+void	push(t_node	**from, t_node	**to)
 {
-    t_stack_node    *tmp;
+	t_node	*tmp;
 
-    tmp = from->next;
-    to->prev = from;
-    from->next = to;
-    from = tmp;
+	if (!*from)
+		return ;
+	tmp = (*from)->next;
+	(*from)->next = *to;
+	if (*to)
+		(*to)->prev = *from;
+	*to = *from;
+	*from = tmp;
+	if (*from)
+		(*from)->prev = NULL;
 }
 
-void    ft_pa(t_stack_node  *stack_a, t_stack_node  *stack_b)
+void	ft_pa(t_node	**stack_a, t_node	**stack_b)
 {
-    ft_putstr_fd("pa\n", 1);
-    push(stack_b, stack_a);
+	ft_putstr_fd("pa\n", 1);
+	push(stack_b, stack_a);
 }
 
-void    ft_pb(t_stack_node  *stack_a, t_stack_node  *stack_b)
+void	ft_pb(t_node	**stack_a, t_node	**stack_b)
 {
-    ft_putstr_fd("pb\n", 1);
-    push(stack_a, stack_b);
+	ft_putstr_fd("pb\n", 1);
+	push(stack_a, stack_b);
 }
