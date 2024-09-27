@@ -6,7 +6,7 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:01:38 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/27 12:43:25 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/27 15:02:21 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ void	rotate_stack_a(t_node **stack_a);
 int		check_nbr(char *str);
 void	free_array_stack(t_node	**stack, char	**array, char	*msg);
 void	free_stack(t_node	**stack, char	*msg);
+void	free_array(char **array);
 
 #endif

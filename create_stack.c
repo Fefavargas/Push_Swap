@@ -6,7 +6,7 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:48:15 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/27 13:41:17 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/27 15:00:49 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ t_node	*create_stack_a(int argc, char **argv)
 			free_array_stack(&stack, array, "Error\n");
 			return (0);
 		}
+		free_array(array);
 	}
 	indexation(&stack);
 	return (stack);
