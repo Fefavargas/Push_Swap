@@ -26,7 +26,10 @@ int	main(int argc, char **argv)
 	if (!stack_a)
 		return (0);
 	if (is_sorted(stack_a))
+	{
+		free_stack(&stack_a, "Error\n");
 		return (0);
+	}
 	create_stack_b(&stack_a, &stack_b);
 	while (stack_b)
 	{

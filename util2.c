@@ -12,14 +12,14 @@
 
 #include "push_swap.h"
 
-int	size_loop_push_b(int count)
+/*int	size_loop_push_b(int count)
 {
 	if (count / 2 >= 3)
 		return (count / 2 + count % 2);
 	if (count == 5)
 		return (2);
 	return (1);
-}
+}*/
 
 int	abs(int i)
 {

@@ -44,6 +44,7 @@ void	move_node(t_node **stack_a, t_node **stack_b, t_node node);
 t_node	*create_stack_a(int argc, char **argv);
 //crate_tack_b.c
 void	create_stack_b(t_node **stack_a, t_node **stack_b);
+//cost.c
 void	calculate_cost_b(t_node *stack_a, t_node **stack_b);
 //util.c
 size_t	find_min_index(t_node *stack);
