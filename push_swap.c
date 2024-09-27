@@ -6,7 +6,7 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:01:21 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/25 18:24:57 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/27 13:49:38 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	main(int argc, char **argv)
 {
 	t_node	*stack_a;
 	t_node	*stack_b;
-	size_t	count;
 
 	stack_b = NULL;
 	stack_a = NULL;
@@ -27,7 +26,7 @@ int	main(int argc, char **argv)
 		return (0);
 	if (is_sorted(stack_a))
 	{
-		free_stack(&stack_a, "Error\n");
+		free_stack(&stack_a, "");
 		return (0);
 	}
 	create_stack_b(&stack_a, &stack_b);
@@ -38,6 +37,6 @@ int	main(int argc, char **argv)
 	}
 	rotate_stack_a(&stack_a);
 	if (is_sorted(stack_a))
-		free_stack(&stack_a, "Error\n");
+		free_stack(&stack_a, "\0/\n");
 	return (0);
 }

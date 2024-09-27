@@ -6,7 +6,7 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 19:06:56 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/25 18:24:57 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/27 13:42:46 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	find_min_index(t_node *stack)
 	min = stack->index;
 	while (stack)
 	{
-		if (min > stack->index)
+		if ((int)min > stack->index)
 			min = stack->index;
 		stack = stack->next;
 	}
@@ -35,19 +35,6 @@ t_node	find_max(t_node *stack)
 	{
 		if (node.nbr < stack->nbr)
 			node = *stack;
-		stack = stack->next;
-	}
-	return (node);
-}
-
-t_node	find_last(t_node *stack)
-{
-	t_node	node;
-
-	node = *stack;
-	while (stack)
-	{
-		node = *stack;
 		stack = stack->next;
 	}
 	return (node);

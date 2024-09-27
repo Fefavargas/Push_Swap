@@ -6,7 +6,7 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:34:56 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/24 20:51:57 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/27 11:33:22 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	rrotate(t_node	**stack)
 {
 	t_node	*tmp1;
 
+	if (!stack || !(*stack) || !(*stack)->next)
+		return ;
 	tmp1 = *stack;
 	while (tmp1 && tmp1->next)
 		tmp1 = tmp1->next;

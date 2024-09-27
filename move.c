@@ -6,7 +6,7 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 20:41:26 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/24 21:46:25 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/27 12:36:20 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,16 @@ void	move_node(t_node **stack_a, t_node **stack_b, t_node node)
 	r_rotate_a(stack_a, node.cost_a);
 	r_rotate_b(stack_b, node.cost_b);
 	ft_pa(stack_a, stack_b);
+}
+
+void	move_stack_b(t_node **stack_a, t_node **stack_b)
+{
+	int		index;
+	t_node	*tmp;
+
+	tmp = *stack_b;
+	index = find_min_cost_index(*stack_b);
+	while (tmp->index != index)
+		tmp = tmp->next;
+	move_node(stack_a, stack_b, *tmp);
 }

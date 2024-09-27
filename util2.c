@@ -6,20 +6,11 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 18:28:42 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/25 18:24:46 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/27 12:41:21 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/*int	size_loop_push_b(int count)
-{
-	if (count / 2 >= 3)
-		return (count / 2 + count % 2);
-	if (count == 5)
-		return (2);
-	return (1);
-}*/
 
 int	abs(int i)
 {
@@ -28,11 +19,11 @@ int	abs(int i)
 	return (i);
 }
 
-int	bigger(int i, int j)
+int	bigger_abs(int i, int j)
 {
-	if (i > j)
-		return (i);
-	return (j);
+	if (abs(i) > abs(j))
+		return (abs(i));
+	return (abs(j));
 }
 
 int	find_cost(t_node stack_b)
@@ -40,9 +31,9 @@ int	find_cost(t_node stack_b)
 	int	i;
 
 	if (stack_b.cost_a < 0 && stack_b.cost_b < 0)
-		i = bigger(abs(stack_b.cost_a), abs(stack_b.cost_b));
+		i = bigger_abs(stack_b.cost_a, stack_b.cost_b);
 	else if (stack_b.cost_a > 0 && stack_b.cost_b > 0)
-		i = bigger(abs(stack_b.cost_a), abs(stack_b.cost_b));
+		i = bigger_abs(stack_b.cost_a, stack_b.cost_b);
 	else
 		i = abs(stack_b.cost_a) + abs(stack_b.cost_b);
 	return (i);

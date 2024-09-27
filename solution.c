@@ -6,7 +6,7 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 19:05:31 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/25 18:24:57 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/27 12:43:25 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,6 @@ void	solution_three(t_node **stack_a)
 		ft_sa(stack_a);
 }
 
-void	move_stack_b(t_node **stack_a, t_node **stack_b)
-{
-	int		index;
-	t_node	*tmp;
-
-	tmp = *stack_b;
-	index = find_min_cost_index(*stack_b);
-	while (tmp->index != index)
-		tmp = tmp->next;
-	move_node(stack_a, stack_b, *tmp);
-}
-
 void	rotate_stack_a(t_node **stack_a)
 {
 	size_t	size;
@@ -94,4 +82,27 @@ void	rotate_stack_a(t_node **stack_a)
 	if (index_start <= size / 2)
 		rotation = index_start;
 	r_rotate_a (stack_a, rotation);
+}
+
+void	indexation(t_node	**stack)
+{
+	t_node	*tmp;
+	size_t	count;
+	int		max;
+
+	tmp = *stack;
+	max = find_max(*stack).nbr;
+	count = ft_count(*stack);
+	while (count != 0)
+	{
+		if (tmp->nbr == max)
+		{
+			tmp->index = count - 1;
+			max = find_max_cmp(*stack, max);
+			tmp = *stack;
+			count--;
+		}
+		else
+			tmp = tmp->next;
+	}
 }

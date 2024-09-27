@@ -6,18 +6,37 @@
 #    By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/17 19:23:54 by fvargas           #+#    #+#              #
-#    Updated: 2024/09/20 12:06:27 by fvargas          ###   ########.fr        #
+#    Updated: 2024/09/27 13:38:57 by fvargas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME =			push_swap
 CC =			cc
 CFLAGS =		-Wall -Wextra -Werror -g
 LIBFT =			libft/libft.a
-DEPS = 			push_swap.h
-OBJS =			push_swap.o
+HDRS :=			$(push_swap.h libft/libft.h)
+SRCS = 			cost.c create_stack.c error.c move.c moves_push.c \
+				moves_rotate.c moves_rrotate.c moves_swap.c solution.c \
+				util.c util2.c push_swap.c
 
-%.o: %.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+OBJS = 			$(SRCS:.c=.o)
 
-make: push_swap.o 
-	$(CC) -o makefile push_swap.o
+RM = rm -rf
+
+${NAME}: $(OBJS) $(LIBFT)
+		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+
+all: ${NAME}
+
+clean:
+	${RM} ${OBJS}
+	make clean -C libft
+
+fclean:
+	clean
+	${RM} ${OBJS}
+	make fclean -C libft
+
+re: fclean all
+
+$(OBJS): $(HDRS)

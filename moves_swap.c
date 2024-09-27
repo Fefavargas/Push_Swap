@@ -6,14 +6,14 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:31:52 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/24 21:26:11 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/27 11:00:57 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 
-void	swap(t_node **stack) //need to test
+void	swap(t_node **stack)
 {
 	t_node	*tmp;
 
