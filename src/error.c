@@ -35,6 +35,27 @@ int	check_nbr(char *str)
 	return (1);
 }
 
+int	is_repeated(t_node *stack)
+{
+	t_node	*tmp;
+	int		nbr;
+
+	tmp = stack;
+	while (tmp->next)
+	{
+		nbr = tmp->nbr;
+		while (stack->next)
+		{
+			if (nbr == stack->next->nbr)
+				return (1);
+			stack = stack->next;
+		}
+		tmp = tmp->next;
+		stack = tmp;
+	}
+	return (0);
+}
+
 void	free_array(char **array)
 {
 	int	i;
@@ -65,33 +86,4 @@ void	free_array_stack(t_node	**stack, char	**array, char	*msg)
 	free_stack(stack, "");
 	free_array(array);
 	ft_putstr_fd(msg, 2);
-}
-
-size_t	check_move(char *move, t_node **stack_a, t_node **stack_b)
-{
-	if (ft_strncmp(move, "sa", ft_strlen(move)) == 0)
-		ft_sa(stack_a);
-	else if (ft_strncmp(move, "sb", ft_strlen(move)) == 0)
-		ft_sb(stack_b);
-	else if (ft_strncmp(move, "ss", ft_strlen(move)) == 0)
-		ft_ss(stack_a, stack_b);
-	if (ft_strncmp(move, "pa", ft_strlen(move)) == 0)
-		ft_pa(stack_a, stack_b);
-	else if (ft_strncmp(move, "pb", ft_strlen(move)) == 0)
-		ft_pb(stack_a, stack_b);
-	if (ft_strncmp(move, "ra", ft_strlen(move)) == 0)
-		ft_ra(stack_a);
-	else if (ft_strncmp(move, "rb", ft_strlen(move)) == 0)
-		ft_rb(stack_b);
-	else if (ft_strncmp(move, "rr", ft_strlen(move)) == 0)
-		ft_rr(stack_a, stack_b);
-	if (ft_strncmp(move, "rra", ft_strlen(move)) == 0)
-		ft_rra(stack_a);
-	else if (ft_strncmp(move, "rrb", ft_strlen(move)) == 0)
-		ft_rrb(stack_b);
-	else if (ft_strncmp(move, "rrr", ft_strlen(move)) == 0)
-		ft_rrr(stack_a, stack_b);
-	else
-		return (0);
-	return (1);
 }

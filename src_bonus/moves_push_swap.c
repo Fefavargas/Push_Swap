@@ -29,14 +29,49 @@ void	push(t_node	**from, t_node	**to)
 		(*from)->prev = NULL;
 }
 
-void	ft_pa(t_node	**stack_a, t_node	**stack_b)
+void	ft_p(t_node	**stack_a, t_node	**stack_b, char *msg, size_t printable)
 {
-	ft_putstr_fd("pa\n", 1);
-	push(stack_b, stack_a);
+	if (ft_strncmp(msg, "pa", ft_strlen(msg)) == 0)
+		push(stack_b, stack_a);
+	else if (ft_strncmp(msg, "pb", ft_strlen(msg)) == 0)
+		push(stack_a, stack_b);
+	if (printable)
+	{
+		ft_putstr_fd(msg, 1);
+		ft_putstr_fd("\n", 1);
+	}
 }
 
-void	ft_pb(t_node	**stack_a, t_node	**stack_b)
+void	swap(t_node **stack)
 {
-	ft_putstr_fd("pb\n", 1);
-	push(stack_a, stack_b);
+	t_node	*tmp;
+
+	if (!(*stack) || !((*stack)->next))
+		return ;
+	tmp = (*stack)->next;
+	(*stack)->next = tmp->next;
+	if (tmp->next)
+		tmp->next->prev = *stack;
+	tmp->next = *stack;
+	(*stack)->prev = tmp;
+	tmp->prev = NULL;
+	*stack = tmp;
+}
+
+void	ft_s(t_node	**stack_a, t_node	**stack_b, char *msg, size_t printable)
+{
+	if (ft_strncmp(msg, "sa", ft_strlen(msg)) == 0)
+		swap(stack_a);
+	else if (ft_strncmp(msg, "sb", ft_strlen(msg)) == 0)
+		swap(stack_b);
+	else if (ft_strncmp(msg, "ss", ft_strlen(msg)) == 0)
+	{
+		swap(stack_a);
+		swap(stack_b);
+	}
+	if (printable)
+	{
+		ft_putstr_fd(msg, 1);
+		ft_putstr_fd("\n", 1);
+	}
 }

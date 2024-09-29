@@ -14,64 +14,61 @@
 
 void	r_rotate_b(t_node **stack_b, int count)
 {
-	while (count < 0)
-	{
-		ft_rrb(stack_b);
-		count++;
-	}
-	while (count > 0)
-	{
-		ft_rb(stack_b);
-		count--;
-	}
+	while (count++ < 0)
+		ft_rr(NULL, stack_b, "rrb", 1);
+	while (count-- > 0)
+		ft_r(NULL, stack_b, "rb", 1);
 }
 
 void	r_rotate_a(t_node **stack_a, int count)
 {
-	while (count < 0)
-	{
-		ft_rra(stack_a);
-		count++;
-	}
-	while (count > 0)
-	{
-		ft_ra(stack_a);
-		count--;
-	}
+	while (count++ < 0)
+		ft_rr(stack_a, NULL, "rra", 1);
+	while (count-- > 0)
+		ft_r(stack_a, NULL, "ra", 1);
 }
 
 void	r_rotate_ab(t_node **stack_a, t_node **stack_b, t_node *node)
 {
 	while (node->cost_a < 0 && node->cost_b < 0)
 	{
-		ft_rrr(stack_a, stack_b);
+		ft_rr(stack_a, stack_b, "rrr", 1);
 		node->cost_a++;
 		node->cost_b++;
 	}
 	while (node->cost_a > 0 && node->cost_b > 0)
 	{
-		ft_rr(stack_a, stack_b);
+		ft_r(stack_a, stack_b, "rr", 1);
 		node->cost_a--;
 		node->cost_b--;
 	}
 }
 
-void	move_node(t_node **stack_a, t_node **stack_b, t_node node)
+void	move_node_to_stacka(t_node **stack_a, t_node **stack_b, t_node node)
 {
 	r_rotate_ab(stack_a, stack_b, &node);
 	r_rotate_a(stack_a, node.cost_a);
 	r_rotate_b(stack_b, node.cost_b);
-	ft_pa(stack_a, stack_b);
+	ft_p(stack_a, stack_b, "pa", 1);
 }
 
-void	move_stack_b(t_node **stack_a, t_node **stack_b)
+void	rotate_stack_a(t_node **stack_a)
 {
-	int		index;
+	size_t	size;
+	size_t	index_start;
 	t_node	*tmp;
+	int		rotation;
 
-	tmp = *stack_b;
-	index = find_min_cost_index(*stack_b);
-	while (tmp->index != index)
+	size = ft_count(*stack_a);
+	index_start = 0;
+	tmp = *stack_a;
+	while (tmp && tmp->index != 0)
+	{
 		tmp = tmp->next;
-	move_node(stack_a, stack_b, *tmp);
+		index_start++;
+	}
+	rotation = index_start - size;
+	if (index_start <= size / 2)
+		rotation = index_start;
+	r_rotate_a(stack_a, rotation);
 }

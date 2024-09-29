@@ -29,21 +29,54 @@ void	rotate(t_node **stack)
 	tmp1->next->next = NULL;
 }
 
-void	ft_ra(t_node	**stack)
+void	ft_r(t_node	**stack_a, t_node	**stack_b, char *msg, size_t printable)
 {
-	ft_putstr_fd("ra\n", 1);
-	rotate(stack);
+	if (ft_strncmp(msg, "ra", ft_strlen(msg)) == 0)
+		rotate(stack_a);
+	else if (ft_strncmp(msg, "rb", ft_strlen(msg)) == 0)
+		rotate(stack_b);
+	else if (ft_strncmp(msg, "rr", ft_strlen(msg)) == 0)
+	{
+		rotate(stack_a);
+		rotate(stack_b);
+	}
+	if (printable)
+	{
+		ft_putstr_fd(msg, 1);
+		ft_putstr_fd("\n", 1);
+	}
 }
 
-void	ft_rb(t_node	**stack)
+void	rrotate(t_node	**stack)
 {
-	ft_putstr_fd("rb\n", 1);
-	rotate(stack);
+	t_node	*tmp1;
+
+	if (!stack || !(*stack) || !(*stack)->next)
+		return ;
+	tmp1 = *stack;
+	while (tmp1 && tmp1->next)
+		tmp1 = tmp1->next;
+	tmp1->prev->next = NULL;
+	tmp1->prev = NULL;
+	tmp1->next = *stack;
+	(*stack)->prev = tmp1;
+	*stack = tmp1;
 }
 
-void	ft_rr(t_node	**stack_a, t_node	**stack_b)
+void	ft_rr(t_node	**stack_a, t_node	**stack_b, char *msg, size_t printable)
 {
-	ft_putstr_fd("rr\n", 1);
-	rotate(stack_a);
-	rotate(stack_b);
+	if (ft_strncmp(msg, "rra", ft_strlen(msg)) == 0)
+		rotate(stack_a);
+	else if (ft_strncmp(msg, "rrb", ft_strlen(msg)) == 0)
+		rotate(stack_b);
+	else if (ft_strncmp(msg, "rrr", ft_strlen(msg)) == 0)
+	{
+		rrotate(stack_a);
+		rrotate(stack_b);
+	}
+	if (printable)
+	{
+		ft_putstr_fd(msg, 1);
+		ft_putstr_fd("\n", 1);
+	}
 }

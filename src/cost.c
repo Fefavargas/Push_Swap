@@ -38,13 +38,14 @@ void	top_b_cost(t_node *stack_b, int index, int *cost_br, int *cost_brr)
 	size = ft_count(stack_b);
 	*cost_br = 0;
 	*cost_brr = 0;
+	if (size == 1)
+		return ;
 	while (stack_b && stack_b->index != index)
 	{
 		stack_b = stack_b->next;
 		(*cost_br)++;
 	}
-	if (size != 1)
-		*cost_brr = *cost_br - size;
+	*cost_brr = *cost_br - size;
 }
 
 void	add_cost_node(t_node **node, int cost_a, int cost_b)
@@ -61,7 +62,7 @@ void	assign_cost(t_node *stack_b, t_node **node, int cost_ar, int cost_arr)
 
 	top_b_cost(stack_b, (*node)->index, &cost_br, &cost_brr);
 	add_cost_node(node, cost_ar, cost_br);
-	if (bigger_abs(cost_ar, cost_br) > bigger_abs(cost_arr, cost_brr))
+	if (bigger_abs(cost_arr, cost_brr) < bigger_abs(cost_ar, cost_br))
 		add_cost_node(node, cost_arr, cost_brr);
 	if (cost_ar - cost_brr < bigger_abs((*node)->cost_a, (*node)->cost_b))
 		add_cost_node(node, cost_ar, cost_brr);

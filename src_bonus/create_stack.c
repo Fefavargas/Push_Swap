@@ -1,40 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_stack_a.c                                   :+:      :+:    :+:   */
+/*   create_stack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:48:15 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/25 17:06:48 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/27 15:00:49 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_bonus.h"
 #include "libft/libft.h"
-
-void	indexation(t_node	**stack)
-{
-	t_node	*tmp;
-	size_t	count;
-	int		max;
-
-	tmp = *stack;
-	max = find_max(*stack).nbr;
-	count = ft_count(*stack);
-	while (count != 0)
-	{
-		if (tmp->nbr == max)
-		{
-			tmp->index = count - 1;
-			max = find_max_cmp(*stack, max);
-			tmp = *stack;
-			count--;
-		}
-		else
-			tmp = tmp->next;
-	}
-}
 
 t_node	*create_node(int number, t_node	*prev)
 {
@@ -77,23 +54,23 @@ int	get_stack(t_node **stack, char **array)
 	return (1);
 }
 
-t_node	*create_stack_a(int argc, char **argv)
+t_node	*create_stack_a(char *str)
 {
 	t_node	*stack;
 	int		i;
 	char	**array;
 
 	stack = NULL;
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (str[i])
 	{
-		array = ft_split(argv[i++], ' ');
+		array = ft_split(str[i++], ' ');
 		if (!get_stack(&stack, array) || is_repeated(stack))
 		{
 			free_array_stack(&stack, array, "Error\n");
 			return (0);
 		}
+		free_array(array);
 	}
-	indexation(&stack);
 	return (stack);
 }

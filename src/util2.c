@@ -1,37 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solution.c                                         :+:      :+:    :+:   */
+/*   util2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/20 19:05:31 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/27 12:43:25 by fvargas          ###   ########.fr       */
+/*   Created: 2024/09/24 18:28:42 by fvargas           #+#    #+#             */
+/*   Updated: 2024/09/27 12:41:21 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	is_repeated(t_node *stack)
-{
-	t_node	*tmp;
-	int		nbr;
-
-	tmp = stack;
-	while (tmp->next)
-	{
-		nbr = tmp->nbr;
-		while (stack->next)
-		{
-			if (nbr == stack->next->nbr)
-				return (1);
-			stack = stack->next;
-		}
-		tmp = tmp->next;
-		stack = tmp;
-	}
-	return (0);
-}
 
 int	is_sorted(t_node *stack)
 {
@@ -48,40 +27,18 @@ int	is_sorted(t_node *stack)
 	return (1);
 }
 
-void	solution_three(t_node **stack_a)
+int	abs(int i)
 {
-	int	max;
-
-	if (is_sorted(*stack_a))
-		return ;
-	max = find_max(*stack_a).nbr;
-	if (max == (*stack_a)->nbr)
-		ft_ra(stack_a);
-	else if (max == (*stack_a)->next->nbr)
-		ft_rra(stack_a);
-	if (!is_sorted(*stack_a))
-		ft_sa(stack_a);
+	if (i < 0 && i != -2147483648)
+		return (-i);
+	return (i);
 }
 
-void	rotate_stack_a(t_node **stack_a)
+int	bigger_abs(int i, int j)
 {
-	size_t	size;
-	size_t	index_start;
-	t_node	*tmp;
-	int		rotation;
-
-	size = ft_count(*stack_a);
-	index_start = 0;
-	tmp = *stack_a;
-	while (tmp && tmp->index != 0)
-	{
-		tmp = tmp->next;
-		index_start++;
-	}
-	rotation = index_start - size;
-	if (index_start <= size / 2)
-		rotation = index_start;
-	r_rotate_a (stack_a, rotation);
+	if (abs(i) > abs(j))
+		return (abs(i));
+	return (abs(j));
 }
 
 void	indexation(t_node	**stack)

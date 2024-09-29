@@ -89,11 +89,11 @@ void	choose_node_to_b(t_node **stack_a, t_node **stack_b, int count)
 	{
 		if ((*stack_a)->index < (int)min_index + loop)
 		{
-			ft_pb(stack_a, stack_b);
+			ft_p(stack_a, stack_b, "pb", 1);
 			i++;
 		}
 		else
-			ft_ra(stack_a);
+			ft_r(stack_a, stack_b, "ra", 1);
 	}
 }
 
@@ -110,7 +110,7 @@ void	create_stack_b(t_node **stack_a, t_node **stack_b)
 	if (count <= 5)
 	{
 		while (count-- > 3)
-			ft_pb(stack_a, stack_b);
+			ft_p(stack_a, stack_b, "pb", 1);
 	}
 	else
 		choose_node_to_b(stack_a, stack_b, count);
