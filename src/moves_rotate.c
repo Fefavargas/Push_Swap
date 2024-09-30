@@ -6,12 +6,12 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:33:34 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/27 11:15:15 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/30 15:35:04 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft/libft.h"
+#include "../libft/libft.h"
 
 void	rotate(t_node **stack)
 {
@@ -63,12 +63,12 @@ void	rrotate(t_node	**stack)
 	*stack = tmp1;
 }
 
-void	ft_rr(t_node	**stack_a, t_node	**stack_b, char *msg, size_t printable)
+void	ft_rr(t_node **stack_a, t_node **stack_b, char *msg, size_t printable)
 {
 	if (ft_strncmp(msg, "rra", ft_strlen(msg)) == 0)
-		rotate(stack_a);
+		rrotate(stack_a);
 	else if (ft_strncmp(msg, "rrb", ft_strlen(msg)) == 0)
-		rotate(stack_b);
+		rrotate(stack_b);
 	else if (ft_strncmp(msg, "rrr", ft_strlen(msg)) == 0)
 	{
 		rrotate(stack_a);

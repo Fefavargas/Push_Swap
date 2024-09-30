@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves_push.c                                       :+:      :+:    :+:   */
+/*   moves_push_swap.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:29:48 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/24 20:51:57 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/30 15:28:24 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include "libft/libft.h"
+#include "checker_bonus.h"
+#include "../libft/libft.h"
 
 void	push(t_node	**from, t_node	**to)
 {

@@ -6,12 +6,12 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:16:14 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/27 15:46:10 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/30 14:07:02 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft/libft.h"
+#include "../libft/libft.h"
 #include <limits.h>
 
 int	check_nbr(char *str)

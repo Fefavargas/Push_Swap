@@ -6,7 +6,7 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 20:41:26 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/27 12:36:20 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/30 15:29:40 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,30 @@
 
 void	r_rotate_b(t_node **stack_b, int count)
 {
-	while (count++ < 0)
+	while (count < 0)
+	{
 		ft_rr(NULL, stack_b, "rrb", 1);
-	while (count-- > 0)
+		count++;
+	}
+	while (count > 0)
+	{
 		ft_r(NULL, stack_b, "rb", 1);
+		count--;
+	}
 }
 
 void	r_rotate_a(t_node **stack_a, int count)
 {
-	while (count++ < 0)
+	while (count < 0)
+	{
 		ft_rr(stack_a, NULL, "rra", 1);
-	while (count-- > 0)
+		count++;
+	}
+	while (count > 0)
+	{
 		ft_r(stack_a, NULL, "ra", 1);
+		count--;
+	}
 }
 
 void	r_rotate_ab(t_node **stack_a, t_node **stack_b, t_node *node)

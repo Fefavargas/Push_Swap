@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves_push.c                                       :+:      :+:    :+:   */
+/*   moves_push_swap.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:29:48 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/24 20:51:57 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/30 14:55:18 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft/libft.h"
+#include "../libft/libft.h"
 
 void	push(t_node	**from, t_node	**to)
 {
@@ -75,16 +75,3 @@ void	ft_s(t_node	**stack_a, t_node	**stack_b, char *msg, size_t printable)
 		ft_putstr_fd("\n", 1);
 	}
 }
-
-/*void	ft_pa(t_node	**stack_a, t_node	**stack_b)
-{
-	ft_putstr_fd("pa\n", 1);
-	push(stack_b, stack_a);
-}
-
-void	ft_pb(t_node	**stack_a, t_node	**stack_b)
-{
-	ft_putstr_fd("pb\n", 1);
-	push(stack_a, stack_b);
-}
-*/

@@ -6,12 +6,12 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:33:34 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/27 11:15:15 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/30 15:28:21 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include "libft/libft.h"
+#include "checker_bonus.h"
+#include "../libft/libft.h"
 
 void	rotate(t_node **stack)
 {

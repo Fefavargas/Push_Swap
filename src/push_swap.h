@@ -6,7 +6,7 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:01:38 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/27 15:02:21 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/30 14:12:56 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,6 @@ size_t	ft_count(t_node *stack);
 int		is_sorted(t_node *stack);
 int		bigger_abs(int i, int j);
 void	indexation(t_node	**stack);
+int		abs(int i);
+
 #endif

@@ -6,12 +6,12 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:48:15 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/27 15:00:49 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/30 17:38:56 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
-#include "libft/libft.h"
+#include "../libft/libft.h"
 
 t_node	*create_node(int number, t_node	*prev)
 {
@@ -54,23 +54,18 @@ int	get_stack(t_node **stack, char **array)
 	return (1);
 }
 
-t_node	*create_stack_a(char *str)
+int	create_stack_a(char *str, t_node **stack)
 {
-	t_node	*stack;
 	int		i;
 	char	**array;
 
-	stack = NULL;
 	i = 0;
-	while (str[i])
+	array = ft_split(str, ' ');
+	if (!get_stack(stack, array) || is_repeated(*stack))
 	{
-		array = ft_split(str[i++], ' ');
-		if (!get_stack(&stack, array) || is_repeated(stack))
-		{
-			free_array_stack(&stack, array, "Error\n");
-			return (0);
-		}
-		free_array(array);
+		free_stack(stack, NULL, array, "Error\n");
+		return (0);
 	}
-	return (stack);
+	free_array(array);
+	return (1);
 }

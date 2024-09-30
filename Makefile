@@ -6,7 +6,7 @@
 #    By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/17 19:23:54 by fvargas           #+#    #+#              #
-#    Updated: 2024/09/27 13:38:57 by fvargas          ###   ########.fr        #
+#    Updated: 2024/09/30 15:16:10 by fvargas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,30 +21,31 @@ SRCS = 			src/cost.c src/create_stack.c src/error.c src/move.c src/moves_push_sw
 SRCS_BONUS = 	src_bonus/checker_bonus.c src_bonus/create_stack.c src_bonus/error.c \
 				src_bonus/moves_push_swap.c src_bonus/moves_rotate.c src_bonus/util.c
 
-
 OBJS = 			$(SRCS:.c=.o)
+
+OBJS_BONUS = 	$(SRCS_BONUS:.c=.o)
 
 RM = rm -rf
 
-${NAME}: 
-		make bonus -C libft
-		$(CC) $(CFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
+${NAME}:$(OBJS) $(LIBFT)
+		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
 all: ${NAME}
 
-clean:
-	${RM} ${NAME}
-	make clean -C libft
+bonus: $(OBJS_BONUS) $(LIBFT)
+		$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) -o checker_bonus
 
-fclean:
-	clean
-	${RM} ${NAME}
-	make fclean -C libft
+clean:
+	${RM} ${OBJS} ${OBJS_BONUS}
+	make clean -C ./libft
+
+fclean:	clean
+		${RM} ${NAME}
+		${RM} checker_bonus
+	
 
 re: fclean all
 
-bonus : 
-	make bonus -C libft
-	$(CC) $(CFLAGS) $(SRCS_BONUS) $(LIBFT) -o checker_bonus
-
 $(OBJS): $(HDRS)
+$(OBJS_BONUS): $(HDRS)
+

@@ -6,12 +6,12 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:48:15 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/27 15:00:49 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/30 14:04:26 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft/libft.h"
+#include "../libft/libft.h"
 
 t_node	*create_node(int number, t_node	*prev)
 {

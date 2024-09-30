@@ -6,7 +6,7 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 19:05:31 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/27 12:43:25 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/09/30 15:28:35 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,10 @@ void	move_stack_b(t_node **stack_a, t_node **stack_b)
 
 void	solution(t_node **stack_a, t_node **stack_b)
 {
-	while (stack_b)
+	while (*stack_b)
 	{
-		calculate_cost_b(stack_a, &stack_b);
-		move_stack_b(&stack_a, &stack_b);
+		calculate_cost_b(*stack_a, stack_b);
+		move_stack_b(stack_a, stack_b);
 	}
-	rotate_stack_a(&stack_a);
-	free_stack(&stack_a, "");
+	rotate_stack_a(stack_a);
 }
