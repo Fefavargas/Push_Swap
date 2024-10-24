@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+         #
+#    By: fefa <fefa@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/17 19:23:54 by fvargas           #+#    #+#              #
-#    Updated: 2024/09/30 15:16:10 by fvargas          ###   ########.fr        #
+#    Updated: 2024/10/24 14:54:36 by fefa             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS = 			src/cost.c src/create_stack.c src/error.c src/move.c src/moves_push_sw
 				src/moves_rotate.c src/solution.c src/util.c src/util2.c src/push_swap.c
 
 SRCS_BONUS = 	src_bonus/checker_bonus.c src_bonus/create_stack.c src_bonus/error.c \
-				src_bonus/moves_push_swap.c src_bonus/moves_rotate.c src_bonus/util.c
+				src_bonus/moves_push_swap.c src_bonus/moves_rotate.c src_bonus/util.c \
 
 OBJS = 			$(SRCS:.c=.o)
 

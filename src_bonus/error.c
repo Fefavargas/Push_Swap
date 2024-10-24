@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fefa <fefa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:16:14 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/30 17:30:20 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/10/24 15:41:19 by fefa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,14 @@ void	free_array(char **array)
 void	free_stack_simple(t_node	**stack, char	*msg)
 {
 	t_node	*tmp;
-
-	if (!stack)
-		return ;
-	while (*stack)
+	while (stack && *stack)
 	{
 		tmp = (*stack)->next;
 		free(*stack);
 		*stack = tmp;
 	}
+	if (!stack)
+		free(stack);
 	ft_putstr_fd(msg, 2);
 }
 

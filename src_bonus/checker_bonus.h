@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fefa <fefa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:01:38 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/30 17:29:28 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/10/24 14:54:53 by fefa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_s(t_node	**stack_a, t_node	**stack_b, char *msg, size_t printable);
 void	ft_r(t_node	**stack_a, t_node	**stack_b, char *msg, size_t printable);
 void	ft_rr(t_node **stack_a, t_node	**stack_b, char *msg, size_t printable);
 //create_stack.c
-int		create_stack_a(char *str, t_node **stack);
+t_node	*create_stack_a(int argc, char **argv);
 //util.c
 int		is_repeated(t_node *stack);
 int		is_sorted(t_node *stack);

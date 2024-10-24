@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves_rotate.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fefa <fefa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:33:34 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/30 15:28:21 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/10/24 16:12:50 by fefa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,17 @@ void	rotate(t_node **stack)
 
 void	ft_r(t_node	**stack_a, t_node	**stack_b, char *msg, size_t printable)
 {
-	if (ft_strncmp(msg, "ra", ft_strlen(msg)) == 0)
+	if (!ft_strncmp(msg, "ra\n", ft_strlen(msg)))
 		rotate(stack_a);
-	else if (ft_strncmp(msg, "rb", ft_strlen(msg)) == 0)
+	else if (!ft_strncmp(msg, "rb\n", ft_strlen(msg)))
 		rotate(stack_b);
-	else if (ft_strncmp(msg, "rr", ft_strlen(msg)) == 0)
+	else if (!ft_strncmp(msg, "rr\n", ft_strlen(msg)))
 	{
 		rotate(stack_a);
 		rotate(stack_b);
 	}
 	if (printable)
-	{
 		ft_putstr_fd(msg, 1);
-		ft_putstr_fd("\n", 1);
-	}
 }
 
 void	rrotate(t_node	**stack)
@@ -65,18 +62,15 @@ void	rrotate(t_node	**stack)
 
 void	ft_rr(t_node	**stack_a, t_node	**stack_b, char *msg, size_t printable)
 {
-	if (ft_strncmp(msg, "rra", ft_strlen(msg)) == 0)
-		rotate(stack_a);
-	else if (ft_strncmp(msg, "rrb", ft_strlen(msg)) == 0)
-		rotate(stack_b);
-	else if (ft_strncmp(msg, "rrr", ft_strlen(msg)) == 0)
+	if (!ft_strncmp(msg, "rra\n", ft_strlen(msg)))
+		rrotate(stack_a);
+	else if (!ft_strncmp(msg, "rrb\n", ft_strlen(msg)))
+		rrotate(stack_b);
+	else if (!ft_strncmp(msg, "rrr\n", ft_strlen(msg)))
 	{
 		rrotate(stack_a);
 		rrotate(stack_b);
 	}
 	if (printable)
-	{
 		ft_putstr_fd(msg, 1);
-		ft_putstr_fd("\n", 1);
-	}
 }

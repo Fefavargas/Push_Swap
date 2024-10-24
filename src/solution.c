@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solution.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fefa <fefa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 19:05:31 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/30 15:28:35 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/10/24 15:46:11 by fefa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	solution_three(t_node **stack_a)
 		return ;
 	max = find_max(*stack_a).nbr;
 	if (max == (*stack_a)->nbr)
-		ft_r(stack_a, NULL, "ra", 1);
+		ft_r(stack_a, NULL, "ra\n", 1);
 	else if (max == (*stack_a)->next->nbr)
-		ft_rr(stack_a, NULL, "rra", 1);
+		ft_rr(stack_a, NULL, "rra\n", 1);
 	if (!is_sorted(*stack_a))
-		ft_s(stack_a, NULL, "sa", 1);
+		ft_s(stack_a, NULL, "sa\n", 1);
 }
 
 int	find_cost(t_node stack_b)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves_push_swap.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fefa <fefa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:29:48 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/30 14:55:18 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/10/24 16:16:11 by fefa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,12 @@ void	push(t_node	**from, t_node	**to)
 
 void	ft_p(t_node	**stack_a, t_node	**stack_b, char *msg, size_t printable)
 {
-	if (ft_strncmp(msg, "pa", ft_strlen(msg)) == 0)
+	if (!ft_strncmp(msg, "pa\n", ft_strlen(msg)))
 		push(stack_b, stack_a);
-	else if (ft_strncmp(msg, "pb", ft_strlen(msg)) == 0)
+	else if (!ft_strncmp(msg, "pb\n", ft_strlen(msg)))
 		push(stack_a, stack_b);
 	if (printable)
-	{
 		ft_putstr_fd(msg, 1);
-		ft_putstr_fd("\n", 1);
-	}
 }
 
 void	swap(t_node **stack)
@@ -60,18 +57,15 @@ void	swap(t_node **stack)
 
 void	ft_s(t_node	**stack_a, t_node	**stack_b, char *msg, size_t printable)
 {
-	if (ft_strncmp(msg, "sa", ft_strlen(msg)) == 0)
+	if (!ft_strncmp(msg, "sa\n", ft_strlen(msg)))
 		swap(stack_a);
-	else if (ft_strncmp(msg, "sb", ft_strlen(msg)) == 0)
+	else if (!ft_strncmp(msg, "sb\n", ft_strlen(msg)))
 		swap(stack_b);
-	else if (ft_strncmp(msg, "ss", ft_strlen(msg)) == 0)
+	else if (!ft_strncmp(msg, "ss\n", ft_strlen(msg)))
 	{
 		swap(stack_a);
 		swap(stack_b);
 	}
 	if (printable)
-	{
 		ft_putstr_fd(msg, 1);
-		ft_putstr_fd("\n", 1);
-	}
 }

@@ -54,18 +54,23 @@ int	get_stack(t_node **stack, char **array)
 	return (1);
 }
 
-int	create_stack_a(char *str, t_node **stack)
+t_node	*create_stack_a(int argc, char **argv)
 {
+	t_node	*stack;
 	int		i;
 	char	**array;
 
-	i = 0;
-	array = ft_split(str, ' ');
-	if (!get_stack(stack, array) || is_repeated(*stack))
+	stack = NULL;
+	i = 1;
+	while (i < argc)
 	{
-		free_stack(stack, NULL, array, "Error\n");
-		return (0);
+		array = ft_split(argv[i++], ' ');
+		if (!get_stack(&stack, array) || is_repeated(stack))
+		{
+			free_stack(&stack, NULL, array, "Error\n");
+			return (0);
+		}
+		free_array(array);
 	}
-	free_array(array);
-	return (1);
+	return (stack);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_stack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fefa <fefa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:48:15 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/30 14:04:26 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/10/24 15:52:28 by fefa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,11 @@ void	choose_node_to_b(t_node **stack_a, t_node **stack_b, int count)
 	{
 		if ((*stack_a)->index < (int)min_index + loop)
 		{
-			ft_p(stack_a, stack_b, "pb", 1);
+			ft_p(stack_a, stack_b, "pb\n", 1);
 			i++;
 		}
 		else
-			ft_r(stack_a, stack_b, "ra", 1);
+			ft_r(stack_a, stack_b, "ra\n", 1);
 	}
 }
 
@@ -110,7 +110,7 @@ void	create_stack_b(t_node **stack_a, t_node **stack_b)
 	if (count <= 5)
 	{
 		while (count-- > 3)
-			ft_p(stack_a, stack_b, "pb", 1);
+			ft_p(stack_a, stack_b, "pb\n", 1);
 	}
 	else
 		choose_node_to_b(stack_a, stack_b, count);
