@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fefa <fefa@student.42.fr>                  +#+  +:+       +#+         #
+#    By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/17 19:23:54 by fvargas           #+#    #+#              #
-#    Updated: 2024/10/24 14:54:36 by fefa             ###   ########.fr        #
+#    Updated: 2024/10/28 19:41:59 by fvargas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ ${NAME}:$(OBJS) $(LIBFT)
 all: ${NAME}
 
 bonus: $(OBJS_BONUS) $(LIBFT)
-		$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) -o checker_bonus
+		$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) -o checker
 
 clean:
 	${RM} ${OBJS} ${OBJS_BONUS}
@@ -41,7 +41,7 @@ clean:
 
 fclean:	clean
 		${RM} ${NAME}
-		${RM} checker_bonus
+		${RM} checker
 	
 
 re: fclean all

@@ -6,11 +6,12 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 19:06:56 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/27 13:42:46 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/10/28 18:21:42 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <limits.h>
 
 size_t	find_min_index(t_node *stack)
 {
@@ -40,25 +41,23 @@ t_node	find_max(t_node *stack)
 	return (node);
 }
 
-int	find_max_cmp(t_node *stack, int max)
+t_node	find_max_cmp(t_node *stack, int max)
 {
 	int		prev_max;
-	t_node	*tmp;
+	t_node	node;
 
-	tmp = stack;
-	while (tmp)
-	{
-		if (tmp->index == -1)
-			prev_max = tmp->nbr;
-		tmp = tmp->next;
-	}
+	node = *stack;
+	prev_max = INT_MIN;
 	while (stack)
 	{
 		if (prev_max < stack->nbr && stack->nbr < max)
+		{
 			prev_max = stack->nbr;
+			node = *stack;
+		}
 		stack = stack->next;
 	}
-	return (prev_max);
+	return (node);
 }
 
 t_node	find_min_max_index(t_node *stack_a, int index)
@@ -67,6 +66,7 @@ t_node	find_min_max_index(t_node *stack_a, int index)
 	t_node	node;
 
 	tmp = stack_a;
+	node = *stack_a;
 	while (tmp)
 	{
 		if (tmp->index > index)

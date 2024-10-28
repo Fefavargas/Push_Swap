@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fefa <fefa@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:01:38 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/24 14:54:53 by fefa             ###   ########.fr       */
+/*   Updated: 2024/10/28 19:41:58 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int		is_repeated(t_node *stack);
 int		is_sorted(t_node *stack);
 //error.c
 int		check_nbr(char *str);
-void	free_stack(t_node **stack_a, t_node **stack_b, char **array, char *msg);
+void	free_stack(t_node	**stack, char	*msg);
 void	free_array(char **array);
+void	free_array_stack(t_node	**stack, char	**array, char	*msg);
 
 #endif

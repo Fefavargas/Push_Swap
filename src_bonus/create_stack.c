@@ -6,7 +6,7 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:48:15 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/30 17:38:56 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/10/28 13:04:12 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_node	*create_stack_a(int argc, char **argv)
 		array = ft_split(argv[i++], ' ');
 		if (!get_stack(&stack, array) || is_repeated(stack))
 		{
-			free_stack(&stack, NULL, array, "Error\n");
+			free_array_stack(&stack, array, "Error\n");
 			return (0);
 		}
 		free_array(array);

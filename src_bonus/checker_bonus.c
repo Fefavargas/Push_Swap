@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fefa <fefa@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 15:22:24 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/24 16:13:47 by fefa             ###   ########.fr       */
+/*   Updated: 2024/10/28 19:49:43 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,21 @@ int	ft_moves(t_node **stack_a, t_node **stack_b)
 {
 	char	*line;
 
-	while ((line = get_next_line(0)))
+	line = get_next_line(0);
+	while (line)
 	{
 		if (!check_move(line, stack_a, stack_b))
 		{
-			free_stack(stack_a, stack_b, NULL, "Error");
+			free_stack(stack_a, "Error\n");
+			free_stack(stack_b, "");
 			free(line);
+			get_next_line(-1);
 			return (0);
 		}
+		free(line);
+		line = get_next_line(0);
 	}
+	free(line);
 	get_next_line(-1);
 	return (1);
 }
@@ -65,7 +71,8 @@ void	result(t_node **stack_a, t_node **stack_b)
 		ft_putstr_fd("OK\n", 1);
 	else
 		ft_putstr_fd("KO\n", 1);
-	free_stack(stack_a, stack_b, NULL,"");
+	free_stack(stack_a, "");
+	free_stack(stack_b, "");
 }
 
 int	main(int argc, char **argv)
@@ -77,10 +84,14 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	if (argc == 1)
 		return (0);
-	if (!(stack_a = create_stack_a(argc, argv)))
+	stack_a = create_stack_a(argc, argv);
+	if (!stack_a)
 		return (0);
-	if(!ft_moves(&stack_a, &stack_b))
+	if (!ft_moves(&stack_a, &stack_b))
+	{
+		free_stack(&stack_a, "");
 		return (0);
+	}
 	result(&stack_a, &stack_b);
 	return (0);
 }

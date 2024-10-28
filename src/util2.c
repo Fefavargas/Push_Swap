@@ -6,7 +6,7 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 18:28:42 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/30 14:10:10 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/10/28 18:23:24 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,16 @@ int	bigger_abs(int i, int j)
 
 void	indexation(t_node	**stack)
 {
-	t_node	*tmp;
+	t_node	max;
 	size_t	count;
-	int		max;
 
-	tmp = *stack;
-	max = find_max(*stack).nbr;
+	max = find_max(*stack);
 	count = ft_count(*stack);
+	max.index = count - 1;
 	while (count != 0)
 	{
-		if (tmp->nbr == max)
-		{
-			tmp->index = count - 1;
-			max = find_max_cmp(*stack, max);
-			tmp = *stack;
-			count--;
-		}
-		else
-			tmp = tmp->next;
+		max = find_max_cmp(*stack, max.nbr);
+		max.index = count - 1;
+		count--;
 	}
 }

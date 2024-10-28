@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fefa <fefa@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 14:26:18 by fefa              #+#    #+#             */
-/*   Updated: 2024/10/24 14:58:12 by fefa             ###   ########.fr       */
+/*   Created: 2024/10/28 12:30:28 by fvargas           #+#    #+#             */
+/*   Updated: 2024/10/28 19:40:53 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char	*read_buffer_util_find_newline(int fd, char *stash)
 {
 	int		bytes_read;
 	char	*buffer;
+	char	*tmp;
 
 	if (!stash)
 		stash = (char *)ft_calloc(1, sizeof(char));
@@ -56,12 +57,13 @@ char	*read_buffer_util_find_newline(int fd, char *stash)
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
 		{
-			free(stash);
 			free(buffer);
 			return (0);
 		}
 		buffer[bytes_read] = '\0';
-		stash = ft_strjoin(stash, buffer);
+		tmp = ft_strjoin(stash, buffer);
+		free(stash);
+		stash = tmp;
 	}
 	free(buffer);
 	return (stash);

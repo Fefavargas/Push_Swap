@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves_rotate.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fefa <fefa@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:33:34 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/24 16:12:50 by fefa             ###   ########.fr       */
+/*   Updated: 2024/10/28 12:39:47 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	rrotate(t_node	**stack)
 	*stack = tmp1;
 }
 
-void	ft_rr(t_node	**stack_a, t_node	**stack_b, char *msg, size_t printable)
+void	ft_rr(t_node **stack_a, t_node **stack_b, char *msg, size_t print)
 {
 	if (!ft_strncmp(msg, "rra\n", ft_strlen(msg)))
 		rrotate(stack_a);
@@ -71,6 +71,6 @@ void	ft_rr(t_node	**stack_a, t_node	**stack_b, char *msg, size_t printable)
 		rrotate(stack_a);
 		rrotate(stack_b);
 	}
-	if (printable)
+	if (print)
 		ft_putstr_fd(msg, 1);
 }

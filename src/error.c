@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fefa <fefa@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:16:14 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/24 15:41:49 by fefa             ###   ########.fr       */
+/*   Updated: 2024/10/28 12:49:42 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ void	free_stack(t_node	**stack, char	*msg)
 		free(*stack);
 		*stack = tmp;
 	}
-	if (!stack)
-		free(stack);
 	ft_putstr_fd(msg, 2);
 }
 
