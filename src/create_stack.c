@@ -6,12 +6,11 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:48:15 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/28 17:57:15 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/10/30 22:15:49 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "../libft/libft.h"
 
 t_node	*create_node(int number, t_node	*prev)
 {
@@ -64,8 +63,9 @@ t_node	*create_stack_a(int argc, char **argv)
 	i = 1;
 	while (i < argc)
 	{
+		check_arg(argv[i]);
 		array = ft_split(argv[i++], ' ');
-		if (!get_stack(&stack, array) || is_repeated(stack))
+		if (!array[0] || !get_stack(&stack, array) || is_repeated(stack))
 		{
 			free_array_stack(&stack, array, "Error\n");
 			return (0);

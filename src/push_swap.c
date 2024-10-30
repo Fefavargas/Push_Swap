@@ -6,11 +6,21 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:01:21 by fvargas           #+#    #+#             */
-/*   Updated: 2024/09/30 15:07:53 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/10/30 22:12:12 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	check_arg(char *av)
+{
+	if (av[0] == '\0')
+	{
+		ft_putstr_fd("Error\n", 1);
+		exit (1);
+	}
+	return ;
+}
 
 int	main(int argc, char **argv)
 {

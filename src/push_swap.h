@@ -6,7 +6,7 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:01:38 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/30 16:39:33 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/10/30 22:16:10 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include <stddef.h>
+# include "../libft/libft.h"
 
 typedef struct s_node
 {
@@ -25,6 +26,8 @@ typedef struct s_node
 	struct s_node	*prev;
 }	t_node;
 
+
+void	check_arg(char *av);
 //moves....c
 void	ft_p(t_node	**stack_a, t_node	**stack_b, char *msg, size_t printable);
 void	ft_s(t_node	**stack_a, t_node	**stack_b, char *msg, size_t printable);
