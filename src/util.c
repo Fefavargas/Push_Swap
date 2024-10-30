@@ -6,7 +6,7 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 19:06:56 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/28 18:21:42 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/10/30 16:52:21 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,33 +27,33 @@ size_t	find_min_index(t_node *stack)
 	return (min);
 }
 
-t_node	find_max(t_node *stack)
+t_node	*find_max(t_node *stack)
 {
-	t_node	node;
+	t_node	*node;
 
-	node = *stack;
+	node = stack;
 	while (stack)
 	{
-		if (node.nbr < stack->nbr)
-			node = *stack;
+		if (node->nbr < stack->nbr)
+			node = stack;
 		stack = stack->next;
 	}
 	return (node);
 }
 
-t_node	find_max_cmp(t_node *stack, int max)
+t_node	*find_max_cmp(t_node *stack, int max)
 {
 	int		prev_max;
-	t_node	node;
+	t_node	*node;
 
-	node = *stack;
+	node = stack;
 	prev_max = INT_MIN;
 	while (stack)
 	{
 		if (prev_max < stack->nbr && stack->nbr < max)
 		{
 			prev_max = stack->nbr;
-			node = *stack;
+			node = stack;
 		}
 		stack = stack->next;
 	}

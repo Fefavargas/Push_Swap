@@ -6,7 +6,7 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 19:05:31 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/28 12:31:55 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/10/30 16:51:17 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	solution_three(t_node **stack_a)
 
 	if (is_sorted(*stack_a))
 		return ;
-	max = find_max(*stack_a).nbr;
+	max = find_max(*stack_a)->nbr;
 	if (max == (*stack_a)->nbr)
 		ft_r(stack_a, NULL, "ra\n", 1);
 	else if (max == (*stack_a)->next->nbr)

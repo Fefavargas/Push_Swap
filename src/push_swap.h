@@ -6,7 +6,7 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:01:38 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/28 18:23:15 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/10/30 16:39:33 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ void	free_stack(t_node	**stack, char	*msg);
 void	free_array(char **array);
 //util.c
 size_t	find_min_index(t_node *stack);
-t_node	find_max(t_node *stack);
+t_node	*find_max(t_node *stack);
 t_node	find_min_max_index(t_node *stack_a, int index);
-t_node	find_max_cmp(t_node *stack, int max);
+t_node	*find_max_cmp(t_node *stack, int max);
 size_t	ft_count(t_node *stack);
 //util2.c
 int		is_sorted(t_node *stack);

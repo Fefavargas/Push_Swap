@@ -6,7 +6,7 @@
 /*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 14:38:02 by marvin            #+#    #+#             */
-/*   Updated: 2024/09/27 13:40:27 by fvargas          ###   ########.fr       */
+/*   Updated: 2024/10/30 16:49:54 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	top_a_cost(t_node *stack_a, int index, int *cost_ar, int *cost_arr)
 
 	size = ft_count(stack_a);
 	*cost_ar = 0;
-	if (find_max(stack_a).index < index)
+	if (find_max(stack_a)->index < index)
 		index_target = find_min_index(stack_a);
 	else
 		index_target = find_min_max_index(stack_a, index).index;
